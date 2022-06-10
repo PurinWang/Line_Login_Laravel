@@ -1,0 +1,15 @@
+{
+    "name": "purinwang/line_login",
+    "license": "MIT",
+    "description": "line_login V2.1 for laravel",
+    "autoload": {
+        "psr-4": {
+            "Purinwang\\LineLogin\\": "src/"
+        }
+    },
+    "authors": [{
+        "name": "Sheng-Min Wang",
+        "email": "wsm1214@gmail.com"
+    }],
+    "require": {}
+}
