@@ -7,12 +7,29 @@
 ```
 composer require  purinwang/line_login_Laravel
 ```
-### laravel publish
+### Add path to composer autoload and config/app.php
+- composer.json
 ```
- php artisan vendor:publish --provider="Purin\LineLogin\LineLoginServiceProvider
+    "Purin\\LineLogin\\": "vendor/purinwang/Line_Login_laravel/src/"
 ```
-### laravel use
-- Get LineLogin url
+- config/app.php -> provider block
+```
+    Purin\LineLogin\LineLoginServiceProvider::class,
+```
+- dump
+```
+    composer dump-autoload  
+```
+- laravel publish
+```
+    php artisan vendor:publish --provider="Purin\LineLogin\LineLoginServiceProvider
+```
+### laravel use (Don't forget add .env from .env.example)
+- Line Login Button in blade (default link is /linelogin)
+```
+    @include('linelogin::linelogin')
+```
+- Get LineLogin url to redirect
 ```
     $url = app('lineloginUrl');
     return redirect()->to($url)->send();
