@@ -25,9 +25,9 @@ composer require  purinwang/line_login_Laravel
     php artisan vendor:publish --provider="Purin\LineLogin\LineLoginServiceProvider
 ```
 ### laravel use (Don't forget add .env from .env.example)
-- Line Login Button in blade (default link is /linelogin)
+- Line Login Button in blade
 ```
-    @include('linelogin::linelogin')
+    @include('linelogin::linelogin',[url => 'YOUR URL'])
 ```
 - Get LineLogin url to redirect
 ```

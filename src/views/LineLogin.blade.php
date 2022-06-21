@@ -20,4 +20,4 @@
     }
 </style>
 
-<button class="linelogin" onclick="window.location='linelogin'"></button>
+<button class="linelogin" onclick="window.location='{{ $url }}'"></button>
