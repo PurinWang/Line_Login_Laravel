@@ -2,6 +2,7 @@
 namespace Purin\LineLogin;
 
 use Purin\LineLogin\OAuthController;
+use Purin\LineLogin\LineException;
 
 class LineProfileController{
     private $configManager;
@@ -32,9 +33,13 @@ class LineProfileController{
 
         $url = self::BASEURL."profile";
         $info = Tool::curl($url, $param, 'GET', $header);
-        if(isset($info->error)){
-            throw new Exception($info);
+        try{
+            if(isset($info->error))throw new Exception($info->error);
+        }catch(LineException $e){
+            echo $e;
+            exit();
         }
+        
         return $info;
     }
 

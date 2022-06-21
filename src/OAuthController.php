@@ -2,6 +2,7 @@
 namespace Purin\LineLogin;
 
 use Purin\LineLogin\Tool;
+use Purin\LineLogin\LineException;
 
 class OAuthController{
 
@@ -33,7 +34,12 @@ class OAuthController{
 
         $url = self::BASEURL."token";
         $info = Tool::curl($url, $param);
-        if(isset($info->error)) throw new Exception($info);
+        try{
+            if(isset($info->error)) throw new LineException($info->error);
+        }catch(LineException $e){
+            echo $e;
+            exit();
+        }
         if($detail) return $info;
         return $info->access_token;
     }
@@ -93,7 +99,12 @@ class OAuthController{
 
         $url = self::BASEURL."token";
         $info = Tool::curl($url, $param);
-        if(isset($info->error)) throw new Exception($info);
+        try{
+            if(isset($info->error)) throw new LineException($info->error);
+        }catch(LineException $e){
+            echo $e;
+            exit();
+        }
         if($detail) return $info; 
         return $info->access_token;
     }
@@ -116,7 +127,12 @@ class OAuthController{
 
         $url = self::BASEURL."verify";
         $info = Tool::curl($url, $param);
-        if(isset($info->error)) throw new Exception($info);
+        try{
+            if(isset($info->error)) throw new LineException($info->error);
+        }catch(LineException $e){
+            echo $e;
+            exit();
+        }
         return $info;
     }
 
