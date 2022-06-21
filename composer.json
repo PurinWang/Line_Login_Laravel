@@ -1,5 +1,5 @@
 {
-    "name": "purinwang/line_login",
+    "name": "purinwang/line_login_laravel",
     "license": "MIT",
     "description": "line_login V2.1 for laravel",
     "autoload": {
