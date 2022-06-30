@@ -37,7 +37,7 @@ class OAuthController{
         try{
             if(isset($info->error)) throw new LineException($info->error);
         }catch(LineException $e){
-            echo $e;
+            echo $e->getMessage();
             exit();
         }
         if($detail) return $info;
@@ -53,9 +53,21 @@ class OAuthController{
      */
     public function getDecodeIdData($code, $detail=false){
         $info = $this->getAccessToken($code, true);
-        if(isset($info->error)) throw new Exception($data);
+        try{
+            if(isset($info->error)) throw new LineException($info->error);
+        }catch(LineException $e){
+            echo $e->getMessage();
+            exit();
+        }
         $jwt = $info->id_token;
-        $payload = json_decode(base64_decode(explode(".",$jwt)[1]));
+        try{
+            $jwt = str_replace("-","+",explode(".",$jwt)[1]);
+            $payload = json_decode(base64_decode($jwt));
+            if($payload == "") throw new LineException($info->error);
+        }catch(LineException $e){
+            echo $e->getMessage();
+            exit();
+        }
         if($detail) return $payload;
         return $payload->sub;
     }
@@ -102,7 +114,7 @@ class OAuthController{
         try{
             if(isset($info->error)) throw new LineException($info->error);
         }catch(LineException $e){
-            echo $e;
+            echo $e->getMessage();
             exit();
         }
         if($detail) return $info; 
@@ -130,7 +142,7 @@ class OAuthController{
         try{
             if(isset($info->error)) throw new LineException($info->error);
         }catch(LineException $e){
-            echo $e;
+            echo $e->getMessage();
             exit();
         }
         return $info;

@@ -36,7 +36,7 @@ class LineProfileController{
         try{
             if(isset($info->error))throw new Exception($info->error);
         }catch(LineException $e){
-            echo $e;
+            echo $e->getMessage();
             exit();
         }
         
